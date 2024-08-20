@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getRandomSeq } from "./helpers";
+import { getEmptySpaceIndex, getRandomSeq } from "./helpers";
 import "./App.css";
 import Board from "./components/Board";
 
@@ -10,15 +10,26 @@ function App() {
   const randomNumbers = getRandomSeq(size * size);
   const [values, setValues] = useState(randomNumbers);
 
-  console.log(values);
-
   function shuffle() {
     setValues(getRandomSeq(size * size));
   }
 
+  function handleClick(index: any) {
+    const emptySpaceIndex = getEmptySpaceIndex(values, index);
+    setValues((prev) => {
+      const arr = [...prev];
+      if (emptySpaceIndex) {
+        const prevVal = prev[index];
+        arr[index] = prev[emptySpaceIndex];
+        arr[emptySpaceIndex] = prevVal;
+      }
+      return arr;
+    });
+  }
+
   return (
     <>
-      <Board values={values} setValues={setValues} />
+      <Board size={size} values={values} handleClick={handleClick} />
       <button onClick={shuffle}>Shuffle</button>
     </>
   );

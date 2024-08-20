@@ -6,15 +6,19 @@ interface Props {
 
 function Tile({ value, index, handleClick }: Props) {
   return (
-    <button
-      style={{
-        width: "100px",
-        border: "1px solid black",
-      }}
-      onClick={() => handleClick(index)}
-    >
-      {value}
-    </button>
+    <>
+      {value !== 0 && (
+        <button
+          style={{
+            width: "100px",
+            border: "1px solid black",
+          }}
+          onClick={() => handleClick(index)}
+        >
+          {value}
+        </button>
+      )}
+    </>
   );
 }
 

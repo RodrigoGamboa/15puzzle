@@ -40,6 +40,10 @@ export function getEmptySpaceIndex(seq: number[], index: number) {
     emptySpaceIndex = index - size;
   } else if (seq[index + size] === 0) {
     emptySpaceIndex = index + size;
+  } else if (index % size !== 0 && seq[index - 1] === 0) {
+    emptySpaceIndex = index - 1;
+  } else if (index % size !== size - 1 && seq[index + 1] === 0) {
+    emptySpaceIndex = index + 1;
   }
   return emptySpaceIndex;
 }
