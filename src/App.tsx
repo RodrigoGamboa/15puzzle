@@ -44,6 +44,8 @@ function App() {
         type="number"
         id="size"
         name="size"
+        min={3}
+        max={10}
         value={size}
         onChange={handleSizeChange}
       />
