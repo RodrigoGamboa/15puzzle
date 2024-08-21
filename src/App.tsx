@@ -3,7 +3,7 @@ import { getEmptySpaceIndex, getRandomSeq } from "./helpers";
 import "./App.css";
 import Board from "./components/Board";
 
-const MATRIX_SIZE = 3;
+const MATRIX_SIZE = 4;
 
 function App() {
   const [size, setSize] = useState(MATRIX_SIZE);
@@ -18,7 +18,7 @@ function App() {
     const emptySpaceIndex = getEmptySpaceIndex(values, index);
     setValues((prev) => {
       const arr = [...prev];
-      if (emptySpaceIndex) {
+      if (emptySpaceIndex !== null) {
         const prevVal = prev[index];
         arr[index] = prev[emptySpaceIndex];
         arr[emptySpaceIndex] = prevVal;
@@ -26,6 +26,8 @@ function App() {
       return arr;
     });
   }
+
+  console.log(values);
 
   return (
     <>
