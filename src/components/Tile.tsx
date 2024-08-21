@@ -12,6 +12,7 @@ function Tile({ value, index, handleClick }: Props) {
           style={{
             width: "100px",
             border: "1px solid black",
+            backgroundColor: value === index + 1 ? "limegreen" : "",
           }}
           onClick={() => handleClick(index)}
         >

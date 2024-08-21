@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { getEmptySpaceIndex, getRandomSeq } from "./helpers";
 import "./App.css";
 import Board from "./components/Board";
@@ -15,7 +15,7 @@ function App() {
   }
 
   function handleClick(index: any) {
-    // Refactor when getEmptySpaceIndex gets updated
+    // TODO: Refactor when getEmptySpaceIndex gets updated
     const emptySpaceIndex = getEmptySpaceIndex(values, index);
     setValues((prev) => {
       const arr = [...prev];
@@ -28,10 +28,25 @@ function App() {
     });
   }
 
+  function handleSizeChange(event: ChangeEvent<HTMLInputElement>) {
+    setSize(Number(event.target.value));
+  }
+
+  useEffect(() => {
+    shuffle();
+  }, [size]);
+
   return (
     <>
       <Board size={size} values={values} handleClick={handleClick} />
       <button onClick={shuffle}>Shuffle</button>
+      <input
+        type="number"
+        id="size"
+        name="size"
+        value={size}
+        onChange={handleSizeChange}
+      />
     </>
   );
 }
