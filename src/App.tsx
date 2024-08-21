@@ -15,6 +15,7 @@ function App() {
   }
 
   function handleClick(index: any) {
+    // Refactor when getEmptySpaceIndex gets updated
     const emptySpaceIndex = getEmptySpaceIndex(values, index);
     setValues((prev) => {
       const arr = [...prev];
@@ -26,8 +27,6 @@ function App() {
       return arr;
     });
   }
-
-  console.log(values);
 
   return (
     <>

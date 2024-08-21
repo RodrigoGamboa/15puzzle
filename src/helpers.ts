@@ -16,23 +16,37 @@ function isEven(num: number): boolean {
   return num % 2 === 0;
 }
 
+// Reference: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
 function isSeqSolvable(seq: number[]): boolean {
   const size = Math.sqrt(seq.length);
   const inversionCount = getInversionCount(seq);
+  const numRowBlankFromBottom = getNumRowBlankFromBottom(seq);
+  // If N is odd, then puzzle instance is solvable if number of inversions is even in the input state.
   if (!isEven(size) && isEven(inversionCount)) {
     return true;
   }
+  // If N is even, puzzle instance is solvable if
   if (isEven(size)) {
+    if (
+      // the blank is on an even row counting from the bottom (second-last, fourth-last, etc.) and number of inversions is odd.
+      (isEven(numRowBlankFromBottom) && !isEven(inversionCount)) ||
+      // the blank is on an odd row counting from the bottom (last, third-last, fifth-last, etc.) and number of inversions is even.
+      (!isEven(numRowBlankFromBottom) && isEven(inversionCount))
+    ) {
+      return true;
+    }
   }
-  // TODO: return false;
-  return true;
+  return false;
 }
 
 // Thinking the sequence is a N*N (2D) matrix,
 // Return number of row in which empty space (0) is located,
 // counting from the bottom.
-function getRowCountEmptySpaceFromBottom(seq: number[]): number {
-  return 0;
+function getNumRowBlankFromBottom(seq: number[]): number {
+  const emptySpaceIndex = getBlankIndex(seq);
+  const size = Math.sqrt(seq.length);
+  const y = Math.floor(emptySpaceIndex / size);
+  return size - y;
 }
 
 function getInversionCount(seq: number[]): number {
@@ -55,6 +69,10 @@ function removeEmptySpace(seq: number[]): number[] {
   return seq;
 }
 
+function getBlankIndex(seq: number[]): number {
+  return seq.indexOf(0);
+}
+
 function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
 }
@@ -75,6 +93,7 @@ export function getPosXY(seq: number[], index: number): [number, number] {
   return [x, y];
 }
 
+// TODO: Refactor this code to return boolean isEmptySpaceNeighbour or something like that.
 export function getEmptySpaceIndex(
   seq: number[],
   index: number
