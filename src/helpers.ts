@@ -99,14 +99,14 @@ function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
 }
 
-function getLayeredSeq(seq: number[]): number[][] {
-  const size = Math.sqrt(seq.length);
-  const newSeq = [];
-  for (let i = 0; i < size; i++) {
-    newSeq.push(seq.slice(size * i, size + size * i));
-  }
-  return newSeq;
-}
+// function getLayeredSeq(seq: number[]): number[][] {
+//   const size = Math.sqrt(seq.length);
+//   const newSeq = [];
+//   for (let i = 0; i < size; i++) {
+//     newSeq.push(seq.slice(size * i, size + size * i));
+//   }
+//   return newSeq;
+// }
 
 export function getPosXY(seq: number[], index: number): [number, number] {
   const size = Math.sqrt(seq.length);
