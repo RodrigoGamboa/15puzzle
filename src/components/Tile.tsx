@@ -1,3 +1,5 @@
+import { isEven } from "../helpers";
+
 interface Props {
   value: number;
   index: number;
@@ -9,10 +11,15 @@ function Tile({ value, index, handleClick }: Props) {
     <>
       {value !== 0 && (
         <button
+          className="tsukimi-rounded-bold"
           style={{
             width: "100px",
-            border: "1px solid black",
-            backgroundColor: value === index + 1 ? "limegreen" : "",
+            height: "100px",
+            border: "5px solid #CDDDD2",
+            // backgroundColor:  value === index + 1 ? "limegreen" : "",
+            backgroundColor: isEven(value) ? "#D2C4A6" : "#8F0000",
+            color: "#CDDDD2",
+            fontSize: 24,
           }}
           onClick={() => handleClick(index)}
         >

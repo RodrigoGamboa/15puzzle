@@ -1,5 +1,10 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { getEmptySpaceIndex, getRandomSeq } from "./helpers";
+import {
+  getCountCorrectPositions,
+  getEmptySpaceIndex,
+  getRandomSeq,
+  getResultSeq,
+} from "./helpers";
 import "./App.css";
 import Board from "./components/Board";
 
@@ -7,8 +12,10 @@ const MATRIX_SIZE = 4;
 
 function App() {
   const [size, setSize] = useState(MATRIX_SIZE);
+  const result = getResultSeq(size * size);
   const randomNumbers = getRandomSeq(size * size);
   const [values, setValues] = useState(randomNumbers);
+  const [countCorrectPos, setCountCorrectPos] = useState(0);
 
   function shuffle() {
     setValues(getRandomSeq(size * size));
@@ -32,9 +39,20 @@ function App() {
     setSize(Number(event.target.value));
   }
 
+  // FIXME: Do I need these 3 effects?
   useEffect(() => {
     shuffle();
   }, [size]);
+
+  useEffect(() => {
+    setCountCorrectPos(getCountCorrectPositions(result, values));
+  }, [values]);
+
+  useEffect(() => {
+    if (countCorrectPos === values.length) {
+      alert("You win!");
+    }
+  }, [countCorrectPos]);
 
   return (
     <>
@@ -45,10 +63,11 @@ function App() {
         id="size"
         name="size"
         min={3}
-        max={10}
+        max={7}
         value={size}
         onChange={handleSizeChange}
       />
+      <div>Correct Position: {countCorrectPos}</div>
     </>
   );
 }

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Tsukimi+Rounded:wght@300;400;500;600;700&display=swap");
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -65,4 +67,34 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.tsukimi-rounded-light {
+  font-family: "Tsukimi Rounded", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.tsukimi-rounded-regular {
+  font-family: "Tsukimi Rounded", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tsukimi-rounded-medium {
+  font-family: "Tsukimi Rounded", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.tsukimi-rounded-semibold {
+  font-family: "Tsukimi Rounded", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.tsukimi-rounded-bold {
+  font-family: "Tsukimi Rounded", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }

@@ -1,3 +1,12 @@
+export function getResultSeq(size: number): number[] {
+  const seq: number[] = [];
+  for (let i = 0; i < size - 1; i++) {
+    seq.push(i + 1);
+  }
+  seq.push(0);
+  return seq;
+}
+
 export function getRandomSeq(size: number): number[] {
   const seq: number[] = [];
   while (seq.length < size) {
@@ -12,7 +21,20 @@ export function getRandomSeq(size: number): number[] {
   return seq;
 }
 
-function isEven(num: number): boolean {
+export function getCountCorrectPositions(
+  result: number[],
+  seq: number[]
+): number {
+  let count = 0;
+  for (let i = 0; i < result.length; i++) {
+    if (result[i] === seq[i]) {
+      count++;
+    }
+  }
+  return count;
+}
+
+export function isEven(num: number): boolean {
   return num % 2 === 0;
 }
 
