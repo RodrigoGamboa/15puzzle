@@ -15,7 +15,8 @@ function App() {
   const result = getResultSeq(size * size);
   const randomNumbers = getRandomSeq(size * size);
   const [values, setValues] = useState(randomNumbers);
-  const [countCorrectPos, setCountCorrectPos] = useState(0);
+
+  const countCorrectPos = getCountCorrectPositions(values, result);
 
   function shuffle() {
     setValues(getRandomSeq(size * size));
@@ -39,20 +40,13 @@ function App() {
     setSize(Number(event.target.value));
   }
 
-  // FIXME: Do I need these 3 effects?
+  if (countCorrectPos === values.length - 1) {
+    alert("You win!");
+  }
+
   useEffect(() => {
     shuffle();
   }, [size]);
-
-  useEffect(() => {
-    setCountCorrectPos(getCountCorrectPositions(result, values));
-  }, [values]);
-
-  useEffect(() => {
-    if (countCorrectPos === values.length) {
-      alert("You win!");
-    }
-  }, [countCorrectPos]);
 
   return (
     <>

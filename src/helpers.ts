@@ -26,7 +26,7 @@ export function getCountCorrectPositions(
   seq: number[]
 ): number {
   let count = 0;
-  for (let i = 0; i < result.length; i++) {
+  for (let i = 0; i < result.length - 1; i++) {
     if (result[i] === seq[i]) {
       count++;
     }
